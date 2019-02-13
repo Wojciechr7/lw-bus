@@ -1,0 +1,9 @@
+
+
+<TabView androidTabsPosition="bottom" [selectedIndex]="this.as.TabSelectedIndex" (selectedIndexChanged)="tabchange($event)" class="fa">
+    <page-router-outlet *tabItem="{title: homeIcon}" name="homeTab">
+    </page-router-outlet>
+
+    <page-router-outlet *tabItem="{title: this.as.categories[0].imageSrc}" name="findTab">
+    </page-router-outlet>
+</TabView>

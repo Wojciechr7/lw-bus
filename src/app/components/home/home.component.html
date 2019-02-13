@@ -1,0 +1,19 @@
+<ActionBar class="action-bar">
+    <StackLayout class="top-layout" orientation="horizontal" horizontalAlignment="left">
+        <Image src="~/app/images/lw.png" width="40" height="40"></Image>
+        <Label text="  LW Bus" fontSize="24"></Label>
+    </StackLayout>
+</ActionBar>
+
+
+<ListView [items]="this.as.categories" class="list-group">
+    <ng-template let-category="item" let-i="index" let-odd="odd" let-even="even">
+        <GridLayout class="list-group-item" rows="auto, *" columns="80, *" (tap)="navigate(category.route)">
+            <!--<Image row="0" col="0" src="https://placem.at/people?w=80&txt=0" class="thumb img-circle" rowSpan="2"></Image>-->
+            <Label row="0" col="0" text="{{category.imageSrc}}" class="fa"></Label>
+            <Label row="0" col="1" [text]="category.name"></Label>
+        </GridLayout>
+    </ng-template>
+</ListView>
+
+

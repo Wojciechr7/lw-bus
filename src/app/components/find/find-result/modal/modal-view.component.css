@@ -1,0 +1,16 @@
+.action-bar, .page {
+    background-color: white;
+    color: white;
+    font-weight: bold;
+}
+.my-label {
+    border-radius: 5;
+    color: black;
+    font-family: FontAwesome;
+    font-size: 24;
+    vertical-align: middle;
+}
+
+Button {
+    color: black;
+}

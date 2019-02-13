@@ -1,0 +1,13 @@
+/* Add mobile styles for the component here.  */
+
+.bottom-times {
+    font-size: 12;
+    font-weight: normal;
+}
+
+.header-label {
+    background: #275fff;
+    color: white;
+    padding: 5;
+}
+

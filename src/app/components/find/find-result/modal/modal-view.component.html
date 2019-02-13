@@ -1,0 +1,19 @@
+<ActionBar backgroundColor="red" title="Wybierz Lokalizację" class="action-bar">
+    <NavigationButton ios.systemIcon="19" android.systemIcon="ic_menu_back" (tap)="onClose()"></NavigationButton>
+    <StackLayout class="top-layout" orientation="horizontal" horizontalAlignment="left">
+        <Label text="Pełna Trasa" fontSize="24"></Label>
+    </StackLayout>
+</ActionBar>
+
+<StackLayout class="page">
+    <ListView [items]="passage.stops" class="list-group">
+        <ng-template let-stop="item" let-j="index" let-odd="odd" let-even="even">
+            <DockLayout class="list-group-item">
+                <Label dock="left" width="70%" [text]="stop.name"></Label>
+                <Label dock="right" width="30%" text="{{stop.time | date:'h:mm'}}"></Label>
+            </DockLayout>
+        </ng-template>
+    </ListView>
+</StackLayout>
+
+

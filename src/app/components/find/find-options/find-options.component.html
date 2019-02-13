@@ -1,0 +1,36 @@
+
+
+<StackLayout orientation="vertical" class="find-layout">
+    <DockLayout class="switch-layout">
+        <Switch dock="left" width="15%" #switch1 checked="false"></Switch>
+        <Label dock="left" width="85%" class="text-left" [text]="'Cała Doba'" textWrap="false"></Label>
+    </DockLayout>
+    <GridLayout rows="auto, auto" columns="auto, auto">
+        <Label row="0" col="0" text="Z: "></Label>
+        <TextField row="0" col="1" hint="Lokalizacja Startowa"
+                   secure="false"
+                   autocorrect="false"
+                   class="input input-border"
+                   editable="false"
+                   (tap)="chooseDestination('from')"
+                   text="{{this.fs.destinations.from}}"></TextField>
+    </GridLayout>
+
+
+
+
+    <Button [text]="exchangeIcon" class="fa switch-btn btn btn-primary" (tap)="switchDestinations()"></Button>
+    <GridLayout rows="auto, auto" columns="auto, auto">
+        <Label row="0" col="0" text="Do: "></Label>
+        <TextField row="0" col="1" hint="Lokalizacja Docelowa"
+                   secure="false"
+                   autocorrect="false"
+                   class="input input-border"
+                   editable="false"
+                   (tap)="chooseDestination('to')"
+                   text="{{this.fs.destinations.to}}"></TextField>
+    </GridLayout>
+
+    <Button text="Szukaj Połączenia" class="btn btn-primary btn-active" (tap)="search()"></Button>
+
+</StackLayout>

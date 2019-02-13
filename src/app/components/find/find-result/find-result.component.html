@@ -1,0 +1,31 @@
+<StackLayout class="page">
+    <ListView [items]="this.fs.foundPassagesMock" class="list-group">
+        <ng-template let-passage="item" let-i="index" let-odd="odd" let-even="even">
+            <DockLayout class="list-group-item" (tap)="expand(passage)" stretchLastChild="false">
+                <DockLayout dock="bottom" class="m-t-5" stretchLastChild="false">
+                    <DockLayout dock="bottom" stretchLastChild="false">
+                        <DockLayout dock="bottom" class="bottom-times m-t-5" stretchLastChild="false">
+                            <Label width="15%" dock="left"></Label>
+                            <Label width="55%" dock="left" text="Do Odjazdu: 5 min"></Label>
+                            <Label width="30%" dock="right" class="text-right" text="Czas: 60 min"></Label>
+                        </DockLayout>
+                        <Label width="15%" dock="left"></Label>
+                        <Label width="55%" dock="left" text="Olsztyn"></Label>
+                        <Label width="30%" dock="right" class="text-right" text="{{passage.stops[passage.stops.length - 1].time | date:'h:mm'}}"></Label>
+                    </DockLayout>
+                    <Label width="15%" dock="left"></Label>
+                    <Label width="55%" dock="left" text="Lidzbark Warmiński"></Label>
+                    <Label width="30%" dock="left" class="text-right" text="{{passage.stops[0].time | date:'h:mm'}}"></Label>
+                </DockLayout>
+                <DockLayout width="100%" dock="left" class="c-bg-blue c-white header-label">
+                    <Label width="15%" dock="left" [text]="this.as.categories[1].imageSrc" class="fa"></Label>
+                    <Label width="55%" dock="left" [text]="passage.company"></Label>
+                    <Label width="30%" dock="left" class="text-right" [text]="passage.price + 'zł'"></Label>
+                </DockLayout>
+
+            </DockLayout>
+        </ng-template>
+    </ListView>
+</StackLayout>
+
+

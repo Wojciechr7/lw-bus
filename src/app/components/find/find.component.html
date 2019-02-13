@@ -1,0 +1,19 @@
+<ActionBar class="action-bar">
+    <NavigationButton ios.systemIcon="19" android.systemIcon="ic_menu_back" (tap)="navigate()"></NavigationButton>
+    <StackLayout class="top-layout" orientation="horizontal" horizontalAlignment="left">
+        <Label [text]="chooseLabel()" fontSize="24"></Label>
+    </StackLayout>
+
+</ActionBar>
+
+
+<ns-find-options *ngIf="this.fs.FindPage === 'options'"></ns-find-options>
+
+<ns-find-result *ngIf="this.fs.FindPage === 'result'"></ns-find-result>
+
+
+
+
+
+
+
