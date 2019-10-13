@@ -7,14 +7,13 @@ import {FindService} from "~/app/services/find.service";
 
 @Component({
     moduleId: module.id,
-    templateUrl: "./modal-view.component.html",
-    styleUrls: ["./modal-view.component.css"]
+    templateUrl: "./modal-date-view.component.html",
+    styleUrls: ["./modal-date-view.component.css"]
 })
-export class ModalViewActionBarComponent implements OnInit {
+export class ModalDateComponent implements OnInit {
 
-    public localisations: Array<string> = [];
     public cityIcon: string;
-
+    pickedDate: Date;
 
     constructor(
         private fs: FindService,
@@ -27,20 +26,19 @@ export class ModalViewActionBarComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        /*this.fs.getStops().subscribe(stops => {
-            this.localisations = stops.map(stop => {
-                console.log(stop.name);
-                return stop.name;
-            });
-
-        });*/
+        this.pickedDate = new Date();
     }
-    onClose(val): void {
-        if (val === undefined) {
-            this._params.closeCallback('');
+
+    onClose(accept): void {
+        if (accept) {
+            this._params.closeCallback(this.pickedDate);
         } else {
-            this._params.closeCallback(val);
+            this._params.closeCallback(false);
         }
 
+    }
+
+    onDateChanged(date) {
+        this.pickedDate = date;
     }
 }

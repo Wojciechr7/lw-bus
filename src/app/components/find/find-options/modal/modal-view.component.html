@@ -6,12 +6,12 @@
 </ActionBar>
 
 <StackLayout class="page">
-    <ListView [items]="localisations" class="list-group">
+    <ListView [items]="fs.stops" class="list-group">
         <ng-template let-localisation="item" let-i="index" let-odd="odd" let-even="even">
             <GridLayout class="list-group-item" rows="auto, *" columns="80, *" (tap)="onClose(localisation)">
                 <!--<Image row="0" col="0" src="https://placem.at/people?w=80&txt=0" class="thumb img-circle" rowSpan="2"></Image>-->
                 <Label row="0" col="0" [text]="cityIcon" class="fa"></Label>
-                <Label row="0" col="1" [text]="localisation"></Label>
+                <Label row="0" col="1" [text]="localisation.name"></Label>
             </GridLayout>
         </ng-template>
     </ListView>

@@ -4,7 +4,7 @@ import { ActivatedRoute } from "@angular/router";
 
 @Component({
     moduleId: module.id,
-    templateUrl: "./modal-root.component.html"
+    templateUrl: "./modal-desc.component.html"
 })
 export class ModalDescComponent implements OnInit {
     constructor(
@@ -12,6 +12,10 @@ export class ModalDescComponent implements OnInit {
         private _activeRoute: ActivatedRoute) {}
 
     ngOnInit(): void {
-        this._routerExtensions.navigate(["modal-desc"], { relativeTo: this._activeRoute });
+        this._routerExtensions.navigate([
+            {
+                outlets: { modaly: ['modal-desc'] }
+            }
+        ], {relativeTo: this._activeRoute});
     }
 }

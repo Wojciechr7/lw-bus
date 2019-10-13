@@ -3,14 +3,19 @@ import { NativeScriptRouterModule } from "nativescript-angular/router";
 import { NativeScriptCommonModule } from "nativescript-angular/common";
 import {FindComponent} from "~/app/components/find/find.component";
 import {ModalViewActionBarComponent} from "~/app/components/find/find-options/modal/modal-view-action-bar.component";
-import {ModalRootComponent} from "~/app/components/find/find-options/modal/modal-root.component";
 import { FindResultComponent } from './find-result/find-result.component';
 import { FindOptionsComponent } from './find-options/find-options.component';
-import {ModalViewDescComponent} from "~/app/components/find/find-result/modal/modal-view-action-bar.component";
-import {ModalDescComponent} from "~/app/components/find/find-result/modal/modal-root.component";
+import {ModalViewDescComponent} from "~/app/components/find/find-result/modal/modal-view-desc.component";
+import {ModalDescComponent} from "~/app/components/find/find-result/modal/modal-desc.component";
+import {NativeScriptHttpClientModule} from "nativescript-angular/http-client";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {ModalRootComponent} from "./find-options/modal/modal-root.component";
+import {ModalDateRootComponent} from "~/app/components/find/find-options/modal-date/modal-date-root.component";
+import {ModalDateComponent} from "~/app/components/find/find-options/modal-date/modal-date.component";
 
 @NgModule({
     imports: [
+        NativeScriptHttpClientModule,
         NativeScriptCommonModule,
         NativeScriptRouterModule,
         NativeScriptRouterModule.forChild([
@@ -18,11 +23,14 @@ import {ModalDescComponent} from "~/app/components/find/find-result/modal/modal-
             { path: "find", component: FindComponent, data: { title: "Main page" },
                 children: [
                     {
-                        path: "modal-view", component: ModalViewActionBarComponent
+                        path: "modal-view", outlet: 'modalx', component: ModalViewActionBarComponent
                     },
                     {
-                        path: "modal-desc", component: ModalViewDescComponent
-                    }
+                        path: "modal-desc", outlet: 'modaly', component: ModalViewDescComponent
+                    },
+                    {
+                        path: "modal-date", outlet: 'modaldate', component: ModalDateComponent
+            }
                 ] },
 
         ])
@@ -34,10 +42,13 @@ import {ModalDescComponent} from "~/app/components/find/find-result/modal/modal-
         FindResultComponent,
         FindOptionsComponent,
         ModalDescComponent,
-        ModalViewDescComponent
+        ModalViewDescComponent,
+        ModalDateRootComponent,
+        ModalDateComponent
     ],
-    entryComponents: [ModalRootComponent, ModalDescComponent],
+    entryComponents: [ModalRootComponent, ModalDescComponent, ModalDateRootComponent, ModalDateComponent],
     providers: [
+
     ],
     schemas: [NO_ERRORS_SCHEMA]
 })

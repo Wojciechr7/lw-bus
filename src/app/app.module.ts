@@ -1,4 +1,4 @@
-import { NgModule, NO_ERRORS_SCHEMA, ErrorHandler, NgModuleFactoryLoader } from "@angular/core";
+import {NgModule, NO_ERRORS_SCHEMA, ErrorHandler, NgModuleFactoryLoader, LOCALE_ID} from "@angular/core";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 
 import { AppRoutingModule } from "./app-routing.module";
@@ -16,10 +16,17 @@ traceEnable();
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
 
 // Uncomment and add to NgModule imports if you need to use the HttpClient wrapper
-// import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
+import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
+import {LoaderInterceptor} from "~/app/helpers/loader/loader.interceptor";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import localePl from '@angular/common/locales/pl';
+import {registerLocaleData} from '@angular/common';
+
+registerLocaleData(localePl);
 
 export class MyErrorHandler implements ErrorHandler {
     handleError(error) {
+        console.log(error);
         console.log("### ErrorHandler Error: " + error.toString());
         console.log("### ErrorHandler Stack: " + error.stack);
     }
@@ -32,7 +39,8 @@ export class MyErrorHandler implements ErrorHandler {
     imports: [
         NativeScriptModule,
         AppRoutingModule,
-        NativeScriptFormsModule
+        NativeScriptFormsModule,
+        NativeScriptHttpClientModule
     ],
     declarations: [
         AppComponent,
@@ -40,7 +48,9 @@ export class MyErrorHandler implements ErrorHandler {
     ],
     providers: [
         { provide: ErrorHandler, useClass: MyErrorHandler },
-        { provide: NgModuleFactoryLoader, useClass: NSModuleFactoryLoader }
+        { provide: NgModuleFactoryLoader, useClass: NSModuleFactoryLoader },
+        {provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true},
+        {provide: LOCALE_ID, useValue: 'pl'},
     ],
     schemas: [
         NO_ERRORS_SCHEMA

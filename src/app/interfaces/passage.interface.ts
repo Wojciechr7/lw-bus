@@ -1,8 +1,9 @@
-import {IBusStop} from "~/app/interfaces/bus-stop.interface";
+import {IDeparture} from "~/app/interfaces/departure.interface";
 
 export interface IPassage {
     id: number;
     company: string;
-    stops: Array<IBusStop>;
+    route: Array<IDeparture>;
     price: number;
+    departureTime?: any;
 }

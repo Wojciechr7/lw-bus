@@ -1,5 +1,5 @@
 
 export interface IDestination {
-    from: string;
-    to: string;
+    from: any;
+    to: any;
 }

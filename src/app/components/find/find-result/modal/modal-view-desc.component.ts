@@ -7,8 +7,8 @@ import {IPassage} from "~/app/interfaces/passage.interface";
 
 @Component({
     moduleId: module.id,
-    templateUrl: "./modal-view.component.html",
-    styleUrls: ["./modal-view.component.css"]
+    templateUrl: "./modal-view-desc.component.html",
+    styleUrls: ["./modal-view-desc.component.css"]
 })
 export class ModalViewDescComponent implements OnInit {
 

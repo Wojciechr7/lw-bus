@@ -4,9 +4,9 @@ import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
     moduleId: module.id,
-    templateUrl: "./modal-root.component.html"
+    templateUrl: "./modal-date-root.component.html"
 })
-export class ModalRootComponent implements OnInit {
+export class ModalDateRootComponent implements OnInit {
     constructor(
         private _routerExtensions: RouterExtensions,
         private _activeRoute: ActivatedRoute,
@@ -16,7 +16,7 @@ export class ModalRootComponent implements OnInit {
     ngOnInit(): void {
         this._routerExtensions.navigate([
             {
-                outlets: { modalx: ['modal-view'] }
+                outlets: { modaldate: ['modal-date'] }
             }
         ], {relativeTo: this._activeRoute});
     }

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {IDestination} from "~/app/interfaces/destination.interface";
 import {IPassage} from "~/app/interfaces/passage.interface";
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -11,18 +13,25 @@ export class FindService {
   private findPage: string;
   public destinations: IDestination;
   public foundPassagesMock: Array<IPassage>;
+  public foundPassages: Array<IPassage> = [];
+  private url: string;
+  public stops = [];
 
-  constructor() {
-    this.findPage = 'result';
+
+  constructor(
+      private http: HttpClient
+  ) {
+    this.url = 'http://lwbus.atwebpages.com/api';
+    this.findPage = 'options';
     this.destinations = {
-      from: 'Lidzbark Warmiński',
-      to: 'Olsztyn'
+      from: {id: null, name: ''},
+      to: {id: null, name: ''}
     };
     this.foundPassagesMock = [
       {
         id: 1,
         company: 'Heniorek',
-        stops: [
+        route: [
           {
             name: 'Lidzbark Warmiński',
             time: new Date("Fri, 26 Sep 2014 18:30:00 GMT+2")
@@ -69,7 +78,7 @@ export class FindService {
       {
         id: 2,
         company: 'Bartczak',
-        stops: [
+        route: [
           {
             name: 'Lidzbark Warmiński',
             time: new Date("Fri, 26 Sep 2014 18:30:00 GMT+2")
@@ -116,7 +125,7 @@ export class FindService {
       {
         id: 3,
         company: 'Mobilis',
-        stops: [
+        route: [
           {
             name: 'Lidzbark Warmiński',
             time: new Date("Fri, 26 Sep 2014 18:30:00 GMT+2")
@@ -164,6 +173,13 @@ export class FindService {
 
   }
 
+  public getPassages({from, to, hour, date}) {
+    return this.http.get(`${this.url}/publicApi/passages/${from}/${to}/${hour}/${date}/${new Date().getFullYear()}`);
+  }
+
+  public getStops(): Observable<any> {
+    return this.http.get(`${this.url}/publicApi/stops`);
+  }
 
   get FindPage(): string {
     return this.findPage;

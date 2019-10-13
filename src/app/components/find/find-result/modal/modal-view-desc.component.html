@@ -6,11 +6,11 @@
 </ActionBar>
 
 <StackLayout class="page">
-    <ListView [items]="passage.stops" class="list-group">
+    <ListView [items]="passage.route" class="list-group">
         <ng-template let-stop="item" let-j="index" let-odd="odd" let-even="even">
             <DockLayout class="list-group-item">
                 <Label dock="left" width="70%" [text]="stop.name"></Label>
-                <Label dock="right" width="30%" text="{{stop.time | date:'h:mm'}}"></Label>
+                <Label dock="right" width="30%" text="{{stop.time | date:'HH:mm'}}"></Label>
             </DockLayout>
         </ng-template>
     </ListView>

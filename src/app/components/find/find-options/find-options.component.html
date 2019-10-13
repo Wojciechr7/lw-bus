@@ -2,8 +2,25 @@
 
 <StackLayout orientation="vertical" class="find-layout">
     <DockLayout class="switch-layout">
-        <Switch dock="left" width="15%" #switch1 checked="false"></Switch>
-        <Label dock="left" width="85%" class="text-left" [text]="'Cała Doba'" textWrap="false"></Label>
+        <!--<DatePicker year="1980" month="4" day="20"
+                    (dateChange)="onDateChanged($event.value)"
+                    verticalAlignment="center">
+        </DatePicker>-->
+
+
+        <Switch [isEnabled]="switchEnabled" dock="left" width="15%" #switch1 [checked]="switchChecked" (checkedChange)="switchFullDay($event.value)"></Switch>
+        <Label dock="left" width="25%" class="text-left label-margin" [text]="'Cała Doba'" textWrap="false"></Label>
+        <TextField
+                width="60%"
+                dock="right"
+                secure="false"
+                autocorrect="false"
+                class="input input-border"
+                editable="false"
+                (tap)="pickDate()"
+                text="{{currentDate | date:'d MMMM'}}"></TextField>
+
+
     </DockLayout>
     <GridLayout rows="auto, auto" columns="auto, auto">
         <Label row="0" col="0" text="Z: "></Label>
@@ -13,7 +30,7 @@
                    class="input input-border"
                    editable="false"
                    (tap)="chooseDestination('from')"
-                   text="{{this.fs.destinations.from}}"></TextField>
+                   text="{{this.fs.destinations.from.name}}"></TextField>
     </GridLayout>
 
 
@@ -28,7 +45,7 @@
                    class="input input-border"
                    editable="false"
                    (tap)="chooseDestination('to')"
-                   text="{{this.fs.destinations.to}}"></TextField>
+                   text="{{this.fs.destinations.to.name}}"></TextField>
     </GridLayout>
 
     <Button text="Szukaj Połączenia" class="btn btn-primary btn-active" (tap)="search()"></Button>

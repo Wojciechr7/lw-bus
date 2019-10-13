@@ -1,0 +1,12 @@
+<ActionBar backgroundColor="red" title="Wybierz Lokalizację" class="action-bar">
+    <NavigationButton ios.systemIcon="19" android.systemIcon="ic_menu_back" (tap)="onClose()"></NavigationButton>
+    <StackLayout class="top-layout" orientation="horizontal" horizontalAlignment="left">
+        <Label text="Wybierz datę" fontSize="24"></Label>
+    </StackLayout>
+</ActionBar>
+<DockLayout stretchLastChild="false">
+<DatePicker dock="top" (dateChange)="onDateChanged($event.value)"
+            verticalAlignment="center">
+</DatePicker>
+<Button dock="bottom" text="Zatwierdź" class="btn btn-primary btn-active" (tap)="onClose(true)"></Button>
+</DockLayout>

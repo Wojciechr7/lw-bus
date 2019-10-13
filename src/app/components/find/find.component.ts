@@ -8,50 +8,53 @@ import {IDestination} from "~/app/interfaces/destination.interface";
 import {FindService} from "~/app/services/find.service";
 
 @Component({
-  selector: 'ns-find',
-  templateUrl: './find.component.html',
-  styleUrls: ['./find.component.css'],
-  providers: [ModalDialogService],
-  moduleId: module.id,
+    selector: 'ns-find',
+    templateUrl: './find.component.html',
+    styleUrls: ['./find.component.css'],
+    providers: [ModalDialogService],
+    moduleId: module.id,
 })
 export class FindComponent implements OnInit {
 
 
+    private localisations;
 
 
-
-  constructor(private routerExtension: RouterExtensions,
-              private activeRoute: ActivatedRoute,
-              public as: AppService,
-              public fs: FindService,
-              private _modalService: ModalDialogService,
-              private _vcRef: ViewContainerRef) {
-
-
-  }
+    constructor(private routerExtension: RouterExtensions,
+                private activeRoute: ActivatedRoute,
+                public as: AppService,
+                public fs: FindService,
+                private _modalService: ModalDialogService,
+                private _vcRef: ViewContainerRef) {
 
 
-  public navigate(): void {
-    if (this.fs.FindPage === 'options') {
-      this.as.TabSelectedIndex = 0;
-    } else {
-      this.fs.FindPage = 'options';
     }
 
-  }
 
+    public navigate(): void {
+        if (this.fs.FindPage === 'options') {
+            this.as.TabSelectedIndex = 0;
+        } else {
+            this.fs.FindPage = 'options';
+        }
 
-  public chooseLabel(): string {
-    if (this.fs.FindPage === 'options') {
-      return 'Wyszukaj';
-    } else {
-      return 'Dostępne Przejazdy';
     }
-  }
 
 
-  ngOnInit() {
+    public chooseLabel(): string {
+        if (this.fs.FindPage === 'options') {
+            return 'Wyszukaj';
+        } else {
+            return 'Dostępne Przejazdy';
+        }
+    }
 
-  }
+
+    ngOnInit() {
+        this.fs.getStops().subscribe(stops => {
+            this.fs.stops = stops;
+        });
+
+    }
 
 }
