@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
-import { Routes } from "@angular/router";
+import {PreloadAllModules, Routes} from "@angular/router";
 import {HomeComponent} from "~/app/components/home/home.component";
 import {FindComponent} from "~/app/components/find/find.component";
 import {FleetComponent} from "~/app/components/fleet/fleet.component";
@@ -21,7 +21,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [NativeScriptRouterModule.forRoot(routes)],
+    imports: [NativeScriptRouterModule.forRoot(routes,
+        {preloadingStrategy: PreloadAllModules})],
     exports: [NativeScriptRouterModule]
 })
 export class AppRoutingModule { }

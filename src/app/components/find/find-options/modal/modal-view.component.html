@@ -1,19 +1,16 @@
-<ActionBar backgroundColor="red" title="Wybierz Lokalizację" class="action-bar">
-    <NavigationButton ios.systemIcon="19" android.systemIcon="ic_menu_back" (tap)="onClose()"></NavigationButton>
-    <StackLayout class="top-layout" orientation="horizontal" horizontalAlignment="left">
-        <Label text="Wybierz Lokalizację" fontSize="24"></Label>
+<ActionBar backgroundColor="red" class="action-bar" title="Wybierz Lokalizację">
+    <NavigationButton (tap)="onClose()" android.systemIcon="ic_menu_back" ios.systemIcon="19"></NavigationButton>
+    <StackLayout class="top-layout" horizontalAlignment="left" orientation="horizontal">
+        <Label fontSize="24" text="Wybierz Lokalizację"></Label>
     </StackLayout>
 </ActionBar>
 
-<StackLayout class="page">
-    <ListView [items]="fs.stops" class="list-group">
-        <ng-template let-localisation="item" let-i="index" let-odd="odd" let-even="even">
-            <GridLayout class="list-group-item" rows="auto, *" columns="80, *" (tap)="onClose(localisation)">
-                <!--<Image row="0" col="0" src="https://placem.at/people?w=80&txt=0" class="thumb img-circle" rowSpan="2"></Image>-->
-                <Label row="0" col="0" [text]="cityIcon" class="fa"></Label>
-                <Label row="0" col="1" [text]="localisation.name"></Label>
-            </GridLayout>
-        </ng-template>
-    </ListView>
-    <!--<Button text="Zamknij" (tap)="onClose()"></Button>-->
-</StackLayout>
+<ListView [items]="fs.stops" class="list-group">
+    <ng-template let-even="even" let-i="index" let-localisation="item" let-odd="odd">
+        <GridLayout (tap)="onClose(localisation)" class="list-group-item" columns="80, *" rows="auto, *">
+            <!--<Image row="0" col="0" src="https://placem.at/people?w=80&txt=0" class="thumb img-circle" rowSpan="2"></Image>-->
+            <Label [text]="cityIcon" class="fa" col="0" row="0"></Label>
+            <Label [text]="localisation.name" col="1" row="0"></Label>
+        </GridLayout>
+    </ng-template>
+</ListView>

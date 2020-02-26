@@ -1,19 +1,17 @@
-<ActionBar backgroundColor="red" title="Wybierz Lokalizację" class="action-bar">
-    <NavigationButton ios.systemIcon="19" android.systemIcon="ic_menu_back" (tap)="onClose()"></NavigationButton>
-    <StackLayout class="top-layout" orientation="horizontal" horizontalAlignment="left">
-        <Label text="Pełna Trasa" fontSize="24"></Label>
+<ActionBar backgroundColor="red" class="action-bar" title="Wybierz Lokalizację">
+    <NavigationButton (tap)="onClose()" android.systemIcon="ic_menu_back" ios.systemIcon="19"></NavigationButton>
+    <StackLayout class="top-layout" horizontalAlignment="left" orientation="horizontal">
+        <Label fontSize="24" text="Pełna Trasa"></Label>
     </StackLayout>
 </ActionBar>
 
-<StackLayout class="page">
-    <ListView [items]="passage.route" class="list-group">
-        <ng-template let-stop="item" let-j="index" let-odd="odd" let-even="even">
-            <DockLayout class="list-group-item">
-                <Label dock="left" width="70%" [text]="stop.name"></Label>
-                <Label dock="right" width="30%" text="{{stop.time | date:'HH:mm'}}"></Label>
-            </DockLayout>
-        </ng-template>
-    </ListView>
-</StackLayout>
+<ListView [items]="passage.route" class="list-group">
+    <ng-template let-even="even" let-j="index" let-odd="odd" let-stop="item">
+        <DockLayout class="list-group-item">
+            <Label [text]="stop.name" dock="left" width="70%"></Label>
+            <Label dock="right" text="{{stop.time | date:'HH:mm'}}" width="30%"></Label>
+        </DockLayout>
+    </ng-template>
+</ListView>
 
 

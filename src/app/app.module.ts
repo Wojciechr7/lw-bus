@@ -48,7 +48,6 @@ export class MyErrorHandler implements ErrorHandler {
     ],
     providers: [
         { provide: ErrorHandler, useClass: MyErrorHandler },
-        { provide: NgModuleFactoryLoader, useClass: NSModuleFactoryLoader },
         {provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true},
         {provide: LOCALE_ID, useValue: 'pl'},
     ],
